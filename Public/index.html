@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BLOODLINE SITE PRIVATE</title>
+
+    <style>
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #080808;
+            color: #f5f5f5;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            width: calc(100% - 40px);
+            height: 68px;
+
+            margin: 16px 20px 0;
+
+            border: 1px solid #292929;
+            border-radius: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 24px;
+
+            background: rgba(8, 8, 8, 0.88);
+        }
+
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-box {
+            width: 31px;
+            height: 31px;
+
+            border-radius: 9px;
+
+            background: #ffd43b;
+            color: #111;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            transform: rotate(-6deg);
+        }
+
+        .logo span {
+            color: #ffd43b;
+        }
+
+
+        /* =========================
+           NAV LINKS
+        ========================= */
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            position: relative;
+
+            color: #777;
+            text-decoration: none;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 0.6px;
+
+            transition:
+                color 0.2s ease,
+                opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+
+            bottom: -10px;
+
+            height: 2px;
+
+            background: #ffd43b;
+        }
+
+        /* ENLACES BLOQUEADOS */
+
+        .nav-links a.locked {
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           BLOODLINE BUTTON
+        ========================= */
+
+        .discord {
+            border: 1px solid #303030;
+            border-radius: 12px;
+
+            padding: 12px 18px;
+
+            color: #ddd;
+            text-decoration: none;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+
+            transition: 0.2s ease;
+        }
+
+        .discord:hover {
+            border-color: #ffd43b;
+            color: #fff;
+        }
+
+        .discord-dot {
+            display: inline-block;
+
+            width: 7px;
+            height: 7px;
+
+            margin-right: 9px;
+
+            border-radius: 50%;
+
+            background: #43f58c;
+
+            box-shadow:
+                0 0 8px rgba(67, 245, 140, 0.7);
+
+            transition:
+                background-color 0.4s ease,
+                box-shadow 0.4s ease,
+                transform 0.3s ease;
+        }
+
+        .discord.yellow .discord-dot {
+            background: #ffd43b;
+
+            box-shadow:
+                0 0 8px rgba(255, 212, 59, 0.7);
+
+            transform: scale(1.15);
+        }
+
+        .discord.red .discord-dot {
+            background: #ff3b3b;
+
+            box-shadow:
+                0 0 8px rgba(255, 59, 59, 0.7);
+
+            transform: scale(1.15);
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            text-align: center;
+
+            padding-top: 47px;
+
+            animation:
+                heroFade 0.3s ease-out forwards,
+                heroDown 0.8s ease-out forwards;
+        }
+
+
+        /* =========================
+           SMALL TITLE
+        ========================= */
+
+        .hero-label {
+            color: #ffd43b;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1.2px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           MAIN TITLE
+        ========================= */
+
+        .hero h1 {
+            font-size: clamp(48px, 6vw, 72px);
+
+            line-height: 1;
+
+            letter-spacing: -3px;
+
+            font-weight: 800;
+
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #ffd43b;
+        }
+
+
+        /* =========================
+           DESCRIPTION
+        ========================= */
+
+        .hero p {
+            color: #8c8c8c;
+
+            font-size: 15px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           INFO CARD
+        ========================= */
+
+        .info-card {
+            width: min(560px, calc(100% - 40px));
+
+            min-height: 66px;
+
+            margin: 0 auto;
+
+            border: 1px solid #594b18;
+
+            border-radius: 13px;
+
+            background: #14130e;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 12px 14px 12px 16px;
+
+            text-align: left;
+        }
+
+        .info-title {
+            color: #ffd43b;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 5px;
+        }
+
+        .info-text {
+            color: #fff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        .info-description {
+            color: #777;
+
+            font-size: 10px;
+
+            line-height: 1.4;
+        }
+
+
+        /* =========================
+           ENTER BUTTON
+        ========================= */
+
+        .info-button {
+            background: #ffd43b;
+
+            color: #111;
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 12px 18px;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        .info-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 20px rgba(255, 212, 59, 0.15);
+        }
+
+
+        /* =========================
+           LOGIN MODAL
+        ========================= */
+
+        .login-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.72);
+
+            backdrop-filter: blur(8px);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+
+            z-index: 1000;
+        }
+
+        .login-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .login-box {
+            width: min(360px, calc(100% - 40px));
+
+            padding: 28px;
+
+            background: #101010;
+
+            border: 1px solid #292929;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            transform:
+                translateY(15px)
+                scale(0.97);
+
+            transition:
+                transform 0.3s ease;
+        }
+
+        .login-overlay.show .login-box {
+            transform:
+                translateY(0)
+                scale(1);
+        }
+
+        .login-box h2 {
+            color: #ffd43b;
+
+            font-size: 18px;
+
+            margin-bottom: 8px;
+        }
+
+        .login-box p {
+            color: #777;
+
+            font-size: 11px;
+
+            margin-bottom: 20px;
+        }
+
+        .password-input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            background: #080808;
+
+            border: 1px solid #303030;
+
+            border-radius: 9px;
+
+            color: #fff;
+
+            outline: none;
+
+            font-size: 12px;
+
+            transition:
+                border-color 0.2s ease;
+        }
+
+        .password-input:focus {
+            border-color: #ffd43b;
+        }
+
+        .login-button {
+            width: 100%;
+
+            margin-top: 12px;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #ffd43b;
+
+            color: #111;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 20px rgba(255, 212, 59, 0.15);
+        }
+
+        .close-login {
+            margin-top: 12px;
+
+            background: transparent;
+
+            border: none;
+
+            color: #666;
+
+            cursor: pointer;
+
+            font-size: 10px;
+
+            transition: color 0.2s ease;
+        }
+
+        .close-login:hover {
+            color: #fff;
+        }
+
+        .login-error {
+            color: #ff4545;
+
+            font-size: 10px;
+
+            margin-top: 12px;
+
+            min-height: 12px;
+        }
+
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        @keyframes heroFade {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+
+        }
+
+        @keyframes heroDown {
+
+            from {
+                transform: translateY(-35px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                width: calc(100% - 24px);
+
+                margin: 12px;
+            }
+
+            .hero {
+                padding-top: 55px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .info-card {
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 14px;
+            }
+
+            .info-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-box">
+                BL
+            </div>
+
+            BLOODLINE<span>.</span>
+
+        </div>
+
+
+        <nav class="nav-links">
+
+            <a href="#" class="active">
+                HOME
+            </a>
+
+            <a href="/private" class="locked protected-link">
+                PRIVATE
+            </a>
+
+            <a href="/projects" class="locked protected-link">
+                PROJECTS
+            </a>
+
+            <a href="/media" class="locked protected-link">
+                MEDIA
+            </a>
+
+        </nav>
+
+
+        <a href="#" class="discord" id="bloodlineStatus">
+
+            <span class="discord-dot"></span>
+
+            BLOODLINE
+
+        </a>
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO / INICIO
+    ========================= -->
+
+    <main class="hero">
+
+
+        <div class="hero-label">
+            BLOODLINE PRIVATE
+        </div>
+
+
+        <h1>
+            Welcome to <span>bloodline</span>
+        </h1>
+
+
+        <p>
+            A private space built exclusively for us.
+        </p>
+
+
+
+        <div class="info-card">
+
+
+            <div>
+
+                <div class="info-title">
+                    PRIVATE ACCESS
+                </div>
+
+                <div class="info-text">
+                    Welcome to the Bloodline site.
+                </div>
+
+            </div>
+
+
+
+            <div>
+
+                <div class="info-description">
+                    This website is private.<br>
+                    Only authorized members can enter.
+                </div>
+
+            </div>
+
+
+
+            <button
+                class="info-button"
+                id="enterButton"
+                type="button"
+            >
+                ENTER
+            </button>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         LOGIN MODAL
+    ========================= -->
+
+    <div
+        class="login-overlay"
+        id="loginOverlay"
+    >
+
+        <div class="login-box">
+
+            <h2>
+                BLOODLINE ACCESS
+            </h2>
+
+            <p>
+                Enter your private access password.
+            </p>
+
+
+            <form id="loginForm">
+
+                <input
+                    type="password"
+                    id="passwordInput"
+                    class="password-input"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                >
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    UNLOCK
+                </button>
+
+
+                <div
+                    class="login-error"
+                    id="loginError"
+                ></div>
+
+            </form>
+
+
+            <button
+                class="close-login"
+                id="closeLogin"
+                type="button"
+            >
+                CANCEL
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================
+           BLOODLINE STATUS
+        ========================= */
+
+        const bloodlineStatus =
+            document.getElementById("bloodlineStatus");
+
+        let bloodlineState = 0;
+
+
+        bloodlineStatus.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                bloodlineState++;
+
+
+                if (bloodlineState === 1) {
+
+                    bloodlineStatus.classList.add(
+                        "yellow"
+                    );
+
+                }
+
+
+                else if (bloodlineState === 2) {
+
+                    bloodlineStatus.classList.remove(
+                        "yellow"
+                    );
+
+                    bloodlineStatus.classList.add(
+                        "red"
+                    );
+
+                }
+
+
+                else {
+
+                    bloodlineState = 0;
+
+                    bloodlineStatus.classList.remove(
+                        "red"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           LOGIN ELEMENTS
+        ========================= */
+
+        const enterButton =
+            document.getElementById("enterButton");
+
+        const loginOverlay =
+            document.getElementById("loginOverlay");
+
+        const closeLogin =
+            document.getElementById("closeLogin");
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const passwordInput =
+            document.getElementById("passwordInput");
+
+        const loginError =
+            document.getElementById("loginError");
+
+
+        /* =========================
+           OPEN LOGIN
+        ========================= */
+
+        enterButton.addEventListener(
+            "click",
+            function() {
+
+                loginOverlay.classList.add("show");
+
+                passwordInput.focus();
+
+            }
+        );
+
+
+        /* =========================
+           CLOSE LOGIN
+        ========================= */
+
+        closeLogin.addEventListener(
+            "click",
+            function() {
+
+                loginOverlay.classList.remove("show");
+
+                passwordInput.value = "";
+
+                loginError.textContent = "";
+
+            }
+        );
+
+
+        /* =========================
+           LOGIN REQUEST
+        ========================= */
+
+        loginForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+                loginError.textContent = "";
+
+
+                const password =
+                    passwordInput.value;
+
+
+                if (!password) {
+
+                    loginError.textContent =
+                        "Enter your password.";
+
+                    return;
+
+                }
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/api/login",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+                                    password: password
+                                })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (data.success) {
+
+                        unlockNavigation();
+
+                        loginOverlay.classList.remove(
+                            "show"
+                        );
+
+                        passwordInput.value = "";
+
+                    }
+
+
+                    else {
+
+                        loginError.textContent =
+                            "Incorrect password.";
+
+                        passwordInput.value = "";
+
+                        passwordInput.focus();
+
+                    }
+
+                }
+
+
+                catch (error) {
+
+                    loginError.textContent =
+                        "Connection error.";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           UNLOCK NAVIGATION
+        ========================= */
+
+        function unlockNavigation() {
+
+            const links =
+                document.querySelectorAll(
+                    ".protected-link"
+                );
+
+
+            links.forEach(
+                function(link) {
+
+                    link.classList.remove(
+                        "locked"
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =========================
+           CHECK EXISTING SESSION
+        ========================= */
+
+        async function checkSession() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/session"
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (data.authenticated) {
+
+                    unlockNavigation();
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.log(
+                    "Session check failed."
+                );
+
+            }
+
+        }
+
+
+        checkSession();
+
+
+    </script>
+
+
+</body>
+
+</html>
